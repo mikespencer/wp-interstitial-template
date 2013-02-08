@@ -3,7 +3,6 @@ $imgbase: 'http://img.wpdigital.net/wp-adv/test/mstest/interstitial/img/'
 //$imgbase: '../img/'
 $zIndexBase: 999999997
 
-/*Show interstitial, hide scrollbars, swfs, etc*/
 body.has-interstitial
   width: 100%
   height: 100%
@@ -18,11 +17,8 @@ body.has-interstitial
     display: block
     embed, object, select
       visibility: visible
-      display: block      
-  .transparent
-    opacity: 0
+      display: block
 
-  /*site specific header settings:*/
   .ad-interstitial.wp-int
     .ad-interstitial-header
       background-color: #333
@@ -42,7 +38,7 @@ body.has-interstitial
         background-image: url($imgbase + 'root_int_header_left.gif')
 
 body.has-interstitial.interstitial-blur
-  #wrap, #shell
+  #shell, .sl-content-wrapper, #page
     @include filter(blur(2px))
 
 .ad-interstitial
