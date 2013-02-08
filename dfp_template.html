@@ -1,0 +1,47 @@
+<!-- AD ID: %eaid! -->
+
+<script>
+  window.jQuery || document.write('<script src="http://js.washingtonpost.com/wpost/js/combo?token=20121010232000&c=true&m=true&context=eidos&r=/jquery-1.7.1.js"><\/script>');
+</script>
+
+<link rel="stylesheet" type="text/css" href="http://css.wpdigital.net/wp-adv/test/mstest/interstitial/style.css" />
+
+<script>
+  (function(w, $){
+    'use strict';
+    if($){
+      w.wpAd = w.wpAd || {};
+
+      $.ajax({
+        url: 'http://js.washingtonpost.com/wp-adv/test/mstest/interstitial/interstitial.js',
+        dataType: 'script',
+        cache: true,
+        crossDomain: true,
+        success: function(){
+          wpAd.interstitial_ad = new wpAd.Interstitial({
+            creative: '[%Creative%]',
+            creativeType: '[%Creative Type%]',
+            width: [%Width%],
+            height: [%Height%],
+            clickTrack: '%c',
+            clickTag: '%u',
+            timeOpen: [%Time Open%],
+            pixels: ['[%3rd Party Tracking%]'],
+            customFlashVars: false,
+            creativeBGColor: '#fff',
+            bgcolor: [%Transparency%] ? '#000' : '#fff',
+            opacity: [%Transparency%] ? 0.7 : 1,
+            shadow: [%Transparency%],
+            blur: [%Transparency%],
+            siteOverride: false,
+            quartileTracking: false,
+            wrapperID: 'interstitial_ad',
+            adid: parseInt('%eaid!',10) || 999 //DFP Prievew compatibility
+          });
+        }
+      });
+    }
+  })(parent.window, parent.window.jQuery);
+</script>
+
+<img src="%i" width="1" height="1" alt="" style="border:0;display:none;" />

@@ -1,0 +1,137 @@
+$header-height: 40px
+$imgbase: 'http://img.wpdigital.net/wp-adv/test/mstest/interstitial/img/'
+//$imgbase: '../img/'
+$zIndexBase: 999999997
+
+/*Show interstitial, hide scrollbars, swfs, etc*/
+body.has-interstitial
+  width: 100%
+  height: 100%
+  overflow: hidden
+  margin: 0
+  text-align: left !important
+  
+  embed, object, select
+    visibility: hidden
+    display: none
+  .ad-interstitial
+    display: block
+    embed, object, select
+      visibility: visible
+      display: block      
+  .transparent
+    opacity: 0
+
+  /*site specific header settings:*/
+  .ad-interstitial.wp-int
+    .ad-interstitial-header
+      background-color: #333
+      .ad-logo
+        background-image: url($imgbase + 'wp_int_header_left.gif')
+
+  .ad-interstitial.slate-int  
+    .ad-interstitial-header
+      background-color: #603
+      .ad-logo      
+        background-image: url($imgbase + 'slate_int_header_left.gif')
+
+  .ad-interstitial.root-int
+    .ad-interstitial-header
+      background-color: #663
+      .ad-logo      
+        background-image: url($imgbase + 'root_int_header_left.gif')
+
+body.has-interstitial.interstitial-blur
+  #wrap, #shell
+    @include filter(blur(2px))
+
+.ad-interstitial
+  display: none
+  width: 100%
+  height: 100%
+  z-index: $zIndexBase
+  color: #000
+  font-size: 10px
+  font-family: arial, sans-serif
+  margin: 0
+  padding: 0
+  line-height: 1
+  position: fixed
+  top: 0
+  left: 0
+  text-align: center
+
+  .shadow-narrow
+    @include box-shadow(0, 0, 8px, 2px, #111)
+
+  .shadow-wide
+    @include box-shadow(0, 0, 15px, 3px, #111)
+  
+  .ad-interstitial-cover,
+  .ad-interstitial-inner
+    width: 100%
+    height: 100%
+    position: absolute
+    top: 0
+    left: 0
+
+  .ad-interstitial-cover
+    background-color: #fff
+    opacity: 1
+    z-index: $zIndexBase + 1
+
+  .ad-interstitial-inner
+    z-index: $zIndexBase + 2
+    position: absolute
+
+  .ad-interstitial-header
+    height: $header-height
+    background-color: #000
+    color: #fff
+    padding: 3px 8px
+
+    .ad-logo
+      background-position: left center
+      background-repeat: no-repeat
+      height: $header-height
+
+    .ad-message
+      text-align: center
+      height: $header-height
+      line-height: $header-height
+
+    .ad-close
+      line-height: $header-height
+      cursor: pointer
+      text-align: right
+      float: right
+      display: block
+      height: $header-height
+
+  .ad-interstitial-body
+    embed, object, iframe, img
+      margin: 0 auto
+      border: 0
+      outline: 0
+      display: block
+    .ad-interstitial-creative-container
+      position: relative
+      margin: 0 auto
+
+  .ad-col
+    float: left
+    height: $header-height
+    overflow: hidden
+
+  .ad-col-25
+    width: 25%
+
+  .ad-col-50
+    width: 50%
+
+  .hidden
+    display: none
+
+  .bold
+    font-weight: bold
+    font-size: 12px
