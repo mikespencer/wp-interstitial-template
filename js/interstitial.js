@@ -65,7 +65,8 @@
 
   // add the creative to the body
   Interstitial.prototype.addInterstitial = function(){
-    $html.addClass('has-interstitial').append(this.$wrapper);
+    $html.addClass('has-interstitial');
+    $body.append(this.$wrapper);
     return this;
   };
 
