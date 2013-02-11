@@ -3,7 +3,7 @@
 <head>
   <title>Interstitial Template Test</title>
   <link rel="stylesheet" type="text/css" href="css/reset-min.css" />
-  <link rel="stylesheet" type="text/css" href="css/style.css" />
+  <!--link rel="stylesheet" type="text/css" href="css/style.css" /-->
 </head>
 <body>
 
@@ -41,13 +41,19 @@
     window.jQuery || document.write('<script src="js/lib/jquery.js"><\/script>');
   </script>
   <script>
-    (function(w, $){
+    (function(w, d, $){
       'use strict';
       if($){
 
-        var transparent = true;
+        var transparent = false;
 
         w.wpAd = w.wpAd || {};
+
+        var l = d.createElement('link');
+        l.href = 'css/style.css';
+        l.type = 'text/css';
+        l.rel = 'stylesheet';
+        d.getElementsByTagName('head')[0].appendChild(l);
 
         $.ajax({
           url: 'js/interstitial.js',
@@ -55,7 +61,7 @@
           cache: true,
           crossDomain: true,
           success: function(){
-            wpAd.interstitial_ad = new wpAd.Interstitial({
+            w.wpAd.interstitial_ad = new w.wpAd.Interstitial({
               creative: 'int.jpg',
               creativeType: 'image',
               width: 760,
@@ -78,7 +84,10 @@
           }
         });
       }
-    })(parent.window, parent.window.jQuery);
+    })(parent.window, parent.document, parent.window.jQuery);
   </script>
+
+  <!-- friendly iframe test -->
+  <!--iframe src="iframe.html" width="1" height="1" frameborder="0" marginwidth="0" marginheight="0" scrolling="no"></iframe-->
 </body>
 </html>
