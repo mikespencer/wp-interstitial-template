@@ -3,12 +3,14 @@ $imgbase: 'http://img.wpdigital.net/wp-adv/test/mstest/interstitial/img/'
 //$imgbase: '../img/'
 $zIndexBase: 999999997
 
-body.has-interstitial
-  width: 100%
-  height: 100%
+html.has-interstitial
   overflow: hidden
-  margin: 0
-  text-align: left !important
+  body
+    width: 100%
+    height: 100%
+    overflow: hidden
+    margin: 0
+    text-align: left !important
   
   embed, object, select
     visibility: hidden
@@ -37,7 +39,7 @@ body.has-interstitial
       .ad-logo      
         background-image: url($imgbase + 'root_int_header_left.gif')
 
-body.has-interstitial.interstitial-blur
+html.has-interstitial.interstitial-blur
   #shell, .sl-content-wrapper, #page
     @include filter(blur(2px))
 

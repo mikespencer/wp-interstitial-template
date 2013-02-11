@@ -7,6 +7,7 @@
   // standard vars
   var $head = $('head'),
     $body = $('body'),
+    $html = $('html'),
     $window = $(w),
     default_config = {
 
@@ -14,7 +15,7 @@
       creative: null,               //String: URL to creative.
       creativeType: null,           //String: flash, image, iframe, custom.
 
-      // OPTIONAL:
+      // OPTIONAL (with defaults):
       width: 760,                   //Number: Width of creative
       height: 425,                  //Number: Height of creative
       timeOpen: 15,                 //Number: Seconds open before auto close
@@ -64,7 +65,7 @@
 
   // add the creative to the body
   Interstitial.prototype.addInterstitial = function(){
-    $body.addClass('has-interstitial').append(this.$wrapper);
+    $html.addClass('has-interstitial').append(this.$wrapper);
     return this;
   };
 
@@ -159,7 +160,7 @@
         this.$creativeContainer.addClass('shadow-wide');
       }
       if(this.config.blur){
-        $body.addClass('interstitial-blur');
+        $html.addClass('interstitial-blur');
       }
     }
     $('div.ad-interstitial-cover', this.$wrapper).css({
@@ -173,7 +174,7 @@
   Interstitial.prototype.close = function(){
     this.clearTimer();
     this.showFlashAds();
-    $body.removeClass('has-interstitial interstitial-blur');
+    $html.removeClass('has-interstitial interstitial-blur');
     this.unbindEvents();
     this.$wrapper.remove();
   };
