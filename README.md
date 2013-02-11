@@ -26,5 +26,8 @@ WP Interstitial template for DFP
       adid: null                    //String or Number. DFP ad id reference
     }
 
-#USAGE:
-    var my_interstitial = new wpAd.Interstitial({/* options here */})
+#EXAMPLE USAGE:
+    <script src="interstitial.js"></script>
+    <script>
+      var my_interstitial = new wpAd.Interstitial({/* options here */})
+    </script>
