@@ -25,3 +25,6 @@ WP Interstitial template for DFP
       wrapperID: 'interstitial_ad', //String: ID of html wrapper
       adid: null                    //String or Number. DFP ad id reference
     }
+
+#USAGE:
+    var my_interstitial = new wpAd.Interstitial({/* options here */})
