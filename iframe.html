@@ -1,0 +1,54 @@
+<html lang="eng">
+  <body>
+
+    <script>
+      window.jQuery || document.write('<script src="js/lib/jquery.js"><\/script>');
+    </script>
+    <script>
+      (function(w, d, $){
+        'use strict';
+        if($){
+
+          var transparent = false;
+
+          w.wpAd = w.wpAd || {};
+
+          var l = d.createElement('link');
+          l.href = 'css/style.css';
+          l.type = 'text/css';
+          l.rel = 'stylesheet';
+          d.getElementsByTagName('head')[0].appendChild(l);
+
+          $.ajax({
+            url: 'js/interstitial.js',
+            dataType: 'script',
+            cache: true,
+            crossDomain: true,
+            success: function(){
+              w.wpAd.interstitial_ad = new w.wpAd.Interstitial({
+                creative: 'int.jpg',
+                creativeType: 'image',
+                width: 760,
+                height: 425,
+                clickTrack: '',
+                clickTag: 'http://www.google.com',
+                timeOpen: 3670,
+                pixels: [''],
+                customFlashVars: false,
+                creativeBGColor: '#fff',
+                bgcolor: transparent ? '#000' : '#fff',
+                opacity: transparent ? 0.75 : 1,
+                shadow: transparent,
+                blur: transparent,
+                siteOverride: 'slate.com',
+                quartileTracking: [''],
+                wrapperID: 'interstitial_ad',
+                adid: '%eaid!'
+              });
+            }
+          });
+        }
+      })(parent.window, parent.document, parent.window.jQuery);
+    </script>
+  </body>
+</html>
