@@ -133,16 +133,18 @@
   };
 
   // bind relevant events using .interstitial namespace
+  // using 'bind' instead of 'on' because theroot.com uses an old jQuery version
   Interstitial.prototype.bindEvents = function(){
-    $('div.ad-close', this.$wrapper).on('click.interstitial', this.close.bind(this));
-    $window.on('resize.interstitial', this.alignMiddle.bind(this));
+    $('div.ad-close', this.$wrapper).bind('click.interstitial', this.close.bind(this));
+    $window.bind('resize.interstitial', this.alignMiddle.bind(this));
     return this;
   };
 
   // remove bound events using .interstitial namespace
+  // using 'unbind' instead of 'off' because theroot.com uses an old jQuery version
   Interstitial.prototype.unbindEvents = function(){
-    $('div.ad-close', this.$wrapper).off('.interstitial');
-    $window.off('.interstitial');
+    $('div.ad-close', this.$wrapper).unbind('.interstitial');
+    $window.unbind('.interstitial');
   };
 
   // vertically align the creative to the middle
