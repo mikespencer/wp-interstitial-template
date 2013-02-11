@@ -34,6 +34,9 @@
       adid: null                    //String or Number. DFP ad id reference
     };
 
+  //add bind method if browser does not natively support it:
+  if(!Function.prototype.bind)Function.prototype.bind=function(oThis){if(typeof this!=="function")throw new TypeError("Function.prototype.bind - what is trying to be bound is not callable");var aArgs=Array.prototype.slice.call(arguments,1),fToBind=this,FNOP=function(){},fBound=function(){return fToBind.apply(this instanceof FNOP&&oThis?this:oThis,aArgs.concat(Array.prototype.slice.call(arguments)));};FNOP.prototype=this.prototype;fBound.prototype=new FNOP();return fBound;};
+
   // constructor
   function Interstitial(config){
     //override default config
@@ -131,8 +134,8 @@
 
   // bind relevant events using .interstitial namespace
   Interstitial.prototype.bindEvents = function(){
-    $('div.ad-close', this.$wrapper).on('click.interstitial', $.proxy(this.close, this));
-    $window.on('resize.interstitial', $.proxy(this.alignMiddle, this));
+    $('div.ad-close', this.$wrapper).on('click.interstitial', this.close.bind(this));
+    $window.on('resize.interstitial', this.alignMiddle.bind(this));
     return this;
   };
 
@@ -242,7 +245,7 @@
 
   // start the countdown timer
   Interstitial.prototype.startTimer = function(){
-    this.timer = setTimeout($.proxy(this.updateTimer, this), 1000);
+    this.timer = setTimeout(this.updateTimer.bind(this), 1000);
     return this;
   };
  
