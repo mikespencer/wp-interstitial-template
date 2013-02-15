@@ -1,6 +1,9 @@
 #DESCRIPTION
 WP Interstitial template for DFP
 
+#DEPENDENCIES
+jQuery
+
 #OPTIONS
     {
       // REQUIRED:
