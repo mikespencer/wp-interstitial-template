@@ -6,11 +6,11 @@ jQuery
 
 #OPTIONS
     {
-      // REQUIRED:
+      // REQUIRED (with defaults):
       creative: null,               //String: URL to creative.
       creativeType: null,           //String: flash, image, iframe, custom.
 
-      // OPTIONAL:
+      // OPTIONAL (with defaults):
       width: 760,                   //Number: Width of creative
       height: 425,                  //Number: Height of creative
       timeOpen: 15,                 //Number: Seconds open before auto close
