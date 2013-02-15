@@ -24,21 +24,26 @@
         success: function(){
           w.wpAd.interstitial_ad = new w.wpAd.Interstitial({
             creative: '[%Creative%]',
-            creativeType: '[%Creative Type%]',
+            creativeType: '[%CreativeType%]',
             width: [%Width%],
             height: [%Height%],
-            clickTrack: '%c',
-            clickTag: '%u',
-            timeOpen: [%Time Open%],
-            pixels: ['[%3rd Party Tracking%]'],
+            clickTrack: '%%CLICK_URL_UNESC%%',
+            clickTag: '[%ClickthruURL%]',
+            timeOpen: [%TimeOpen%],
+            pixels: ['[%3rdPartyTracking%]'],
             customFlashVars: false,
             creativeBGColor: '#fff',
-            bgcolor: [%Transparency%] ? '#000' : '#fff',
-            opacity: [%Transparency%] ? 0.75 : 1,
-            shadow: [%Transparency%],
-            blur: [%Transparency%],
+            bgcolor: [%BackgroundColor%],
+            opacity: [%OpacityLevel%],
+            shadow: [%OpacityLevel%] < 1 ? true : false,
+            blur: [%OpacityLevel%] < 1 ? true : false,
             siteOverride: false,
-            quartileTracking: false,
+            quartileTracking: [
+              '[%Track25Percent%]',
+              '[%Track50Percent%]',
+              '[%Track75Percent%]',
+              '[%Track100Percent%]'
+            ],
             wrapperID: 'interstitial_ad',
             adid: '%eaid!'
           });
@@ -48,4 +53,4 @@
   })(parent.window, parent.document, parent.window.jQuery);
 </script>
 
-<img src="%i" width="1" height="1" alt="" style="border:0;display:none;" />
+<img src="%%VIEW_URL_UNESC%%" width="1" height="1" alt="" style="border:0;display:none;" />
