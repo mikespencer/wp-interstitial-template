@@ -30,7 +30,9 @@ jQuery
     }
 
 #EXAMPLE USAGE:
-    <script src="interstitial.js"></script>
+
+    <link rel="stylesheet" type="text/css" href="css/style.css" />
+    <script src="js/interstitial.js"></script>
     <script>
       var my_interstitial = new wpAd.Interstitial({/* options here */})
     </script>
