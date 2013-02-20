@@ -30,7 +30,10 @@
             clickTrack: '%%CLICK_URL_UNESC%%',
             clickTag: '[%ClickthruURL%]',
             timeOpen: [%TimeOpen%],
-            pixels: ['[%3rdPartyTracking%]'],
+            pixels: [
+              '%%VIEW_URL_UNESC%%',
+              '[%3rdPartyTracking%]'
+            ],
             customFlashVars: false,
             creativeBGColor: '#fff',
             bgcolor: [%BackgroundColor%],
@@ -52,5 +55,3 @@
     }
   })(parent.window, parent.document, parent.window.jQuery);
 </script>
-
-<img src="%%VIEW_URL_UNESC%%" width="1" height="1" alt="" style="border:0;display:none;" />
