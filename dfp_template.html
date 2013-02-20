@@ -23,7 +23,7 @@
         crossDomain: true,
         success: function(){
           w.wpAd.interstitial_ad = new w.wpAd.Interstitial({
-            creative: '[%Creative%]',
+            creative: '[%Creative%]' || '[%CreativeURL%]',
             creativeType: '[%CreativeType%]',
             width: [%Width%],
             height: [%Height%],
