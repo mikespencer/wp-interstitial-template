@@ -1,3 +1,4 @@
+/* global escape */
 (function(w, d, $, wpAd){
 
   'use strict';
@@ -199,7 +200,7 @@
   Interstitial.prototype.buildFlashVars = function(){
     var vars = [];
     if(this.config.clickTag){
-      vars.push('clickTag=' + this.config.clickTrack + this.config.clickTag);
+      vars.push('clickTag=' + w.escape(this.config.clickTrack) + encodeURIComponent(this.config.clickTag));
     }
     if(this.config.customFlashVars){
       for(var key in this.config.customFlashVars){
