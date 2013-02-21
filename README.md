@@ -5,8 +5,9 @@ WP Interstitial template for DFP
 jQuery
 
 #OPTIONS
+
     {
-      // REQUIRED (with defaults):
+      // REQUIRED:
       creative: null,               //String: URL to creative.
       creativeType: null,           //String: flash, image, iframe, custom.
 
@@ -16,7 +17,9 @@ jQuery
       timeOpen: 15,                 //Number: Seconds open before auto close
       clickTrack: '',               //String: Prepended click tracker
       clickTag: '',                 //String: Clickthru URL
-      pixels: false,                //Array: 3rd party impression pixels
+      pixels: false,                //Array: Impression pixel url's
+      backupImage: null,            //String: Backup image URL for flash creatives
+      minFlashVer: 6,               //Number: Minimum version of flash player needed for flash creatives
       customFlashVars: false,       //Object: Custom flashvars mapping
       creativeBGColor: '#fff',      //String: background color of the acutal creative
       bgcolor: '#fff',              //String: background color of the overlay

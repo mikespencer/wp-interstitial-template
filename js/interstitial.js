@@ -22,6 +22,8 @@
       clickTrack: '',               //String: Prepended click tracker
       clickTag: '',                 //String: Clickthru URL
       pixels: false,                //Array: Impression pixel url's
+      backupImage: null,            //String: Backup image URL for flash creatives
+      minFlashVer: 6,               //Number: Minimum version of flash player needed for flash creatives
       customFlashVars: false,       //Object: Custom flashvars mapping
       creativeBGColor: '#fff',      //String: background color of the acutal creative
       bgcolor: '#fff',              //String: background color of the overlay
@@ -76,8 +78,11 @@
   // returns the relevant creative code
   Interstitial.prototype.buildCreative = function(){
     if(this.config.creativeType === 'flash'){
-      this.flashvars = this.buildFlashVars();
-      return this.buildSWFCreative();
+      if(this.getFlashVer() >= this.config.minFlashVer){
+        this.flashvars = this.buildFlashVars();
+        return this.buildSWFCreative();
+      }
+      return this.buildImageCreative(this.config.backupImage);
     } else if(this.config.creativeType === 'iframe'){
       return this.buildIframeCreative();
     } else if(this.config.creativeType === 'image'){
@@ -241,7 +246,7 @@
   // image specific code
   Interstitial.prototype.buildImageCreative = function(){
     return '<a href="' + this.config.clickTrack + this.config.clickTag + '" target="_blank">' +
-      '<img src="' + this.config.creative + '" width="' + this.config.width + '" height="' + this.config.height + '" alt="" />' +
+      '<img src="' + (arguments[0] || this.config.creative) + '" width="' + this.config.width + '" height="' + this.config.height + '" alt="" />' +
     '</a>';
   };
 
@@ -302,6 +307,14 @@
       this.rndm = this.rndm || Math.floor(Math.random()*1E6);
       $body.append('<img src="' + url.replace(/\[random\]|\[timestamp\]i/, this.rndm) + '" width="1" height="1" style="display:none;" />');
     }
+  };
+
+  // Get flash player version
+  Interstitial.prototype.getFlashVer = function(){
+    var i,a,o,p,s="Shockwave",f="Flash",t=" 2.0",u=s+" "+f,v=s+f+".",rSW=new RegExp("^"+u+" (\\d+)");
+    if((o=navigator.plugins)&&(p=o[u]||o[u+t])&&(a=p.description.match(rSW)))return a[1];
+    else if(!!(w.ActiveXObject))for(i=10;i>0;i--)try{if(!!(new ActiveXObject(v+v+i)))return i;}catch(e){}
+    return 0;
   };
 
   wpAd.Interstitial = Interstitial;
