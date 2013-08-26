@@ -17,6 +17,7 @@ jQuery
       timeOpen: 15,                 //Number: Seconds open before auto close
       clickTrack: '',               //String: Prepended click tracker
       clickTag: '',                 //String: Clickthru URL
+      imgMap: false,                //String: String of <area /> tags as html code
       pixels: false,                //Array: Impression pixel url's
       backupImage: null,            //String: Backup image URL for flash creatives
       minFlashVer: 6,               //Number: Minimum version of flash player needed for flash creatives
