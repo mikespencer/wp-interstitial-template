@@ -22,6 +22,7 @@
       timeOpen: 15,                 //Number: Seconds open before auto close
       clickTrack: '',               //String: Prepended click tracker
       clickTag: '',                 //String: Clickthru URL
+      imgMap: false,                //String: String of <area /> tags as html code
       pixels: false,                //Array: Impression pixel url's
       backupImage: null,            //String: Backup image URL for flash creatives
       minFlashVer: 6,               //Number: Minimum version of flash player needed for flash creatives
@@ -47,7 +48,10 @@
 
     this.creativeCode = this.buildCreative();
     this.$wrapper = this.buildWrapper();
-
+    if(this.config.creativeType === 'image' && this.config.imgMap){
+      this.map = this.buildImageMap();
+      this.$wrapper.append(this.map);
+    }
     this.$counter = $('span.counter', this.$wrapper);
     this.$header = $('div.ad-interstitial-header', this.$wrapper);
     this.$intbody = $('div.ad-interstitial-body', this.$wrapper);
@@ -246,17 +250,56 @@
 
   // image specific code
   Interstitial.prototype.buildImageCreative = function(){
-    return '<a href="' + this.config.clickTrack + this.config.clickTag + '" target="_blank">' +
-      '<img src="' + (arguments[0] || this.config.creative) + '" width="' + this.config.width + '" height="' + this.config.height + '" alt="" />' +
-    '</a>';
+    return (this.config.imgMap ? '' : '<a href="' + this.config.clickTrack + this.config.clickTag + '" target="_blank">') +
+      '<img src="' + (arguments[0] || this.config.creative) + '" width="' + this.config.width + '" height="' + this.config.height + '" alt=""' + (this.config.imgMap ? ' usemap="#wpIntMap"' : '') + ' />' +
+    (this.config.imgMap ? '' : '</a>');
   };
+
+  Interstitial.prototype.buildImageMap = function(){
+    var areaStr = arguments[0] || this.config.imgMap,
+      root = this,
+      $areas = $(areaStr).each(function(){
+        var $this = $(this), href = $this.attr('href');
+        if(href){
+          $this.attr({'href': root.config.clickTrack + href});
+        }
+      });
+
+    return $('<map></map>').attr({
+      name: 'wpIntMap',
+      id: 'wpIntMap'
+    }).append($areas);
+  };
+
+  /*Interstitial.prototype.buildImageMap = function(){
+    var areas = arguments[0] || this.config.imgMap,
+      l = areas.length,
+      areaStr = '', i, key;
+
+    for(i=0;i<l;i++){
+      areas[i].target = areas[i].target || '_blank';
+      areas[i].shape = areas[i].shape || 'rect';
+      if(areas[i].href){
+        areas[i].href = oThiss.config.clickTrack + areas[i].href;
+      }
+      areaStr += '<area ';
+      for(key in areas[i]){
+        if(areas[i].hasOwnProperty(key)){
+          areaStr += key + '="' + areas[i][key] + '" ';
+        }
+      }
+      areaStr += '/>';
+    }
+
+    return '<map name="wpIntMap" id="wpIntMap">' + areaStr + '</map>';
+  };*/
 
   // start the countdown timer
   Interstitial.prototype.startTimer = function(){
     this.timer = setTimeout(this.updateTimer.bind(this), 1000);
     return this;
   };
- 
+
   // update the countdown timer
   Interstitial.prototype.updateTimer = function(){
     this.config.timeOpen--;
