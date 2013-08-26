@@ -271,29 +271,6 @@
     }).append($areas);
   };
 
-  /*Interstitial.prototype.buildImageMap = function(){
-    var areas = arguments[0] || this.config.imgMap,
-      l = areas.length,
-      areaStr = '', i, key;
-
-    for(i=0;i<l;i++){
-      areas[i].target = areas[i].target || '_blank';
-      areas[i].shape = areas[i].shape || 'rect';
-      if(areas[i].href){
-        areas[i].href = oThiss.config.clickTrack + areas[i].href;
-      }
-      areaStr += '<area ';
-      for(key in areas[i]){
-        if(areas[i].hasOwnProperty(key)){
-          areaStr += key + '="' + areas[i][key] + '" ';
-        }
-      }
-      areaStr += '/>';
-    }
-
-    return '<map name="wpIntMap" id="wpIntMap">' + areaStr + '</map>';
-  };*/
-
   // start the countdown timer
   Interstitial.prototype.startTimer = function(){
     this.timer = setTimeout(this.updateTimer.bind(this), 1000);
