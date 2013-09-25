@@ -30,8 +30,10 @@
             backupImage: '[%BackupImage%]',
             minFlashVer: [%MinimumFlashPlayerVersion%],
             clickTrack: '%%CLICK_URL_UNESC%%',
+            clickTrackEscaped: '%%CLICK_URL_ESC%%',
             clickTag: '[%ClickthruURL%]',
             imgMap: '[%ImageMap%]',
+            extra_ClickTags: ['[%clickTag2%]', '[%clickTag3%]', '[%clickTag4%]', '[%clickTag5%]', '[%clickTag6%]'],
             timeOpen: [%TimeOpen%],
             pixels: [
               '%%VIEW_URL_UNESC%%',
@@ -40,7 +42,7 @@
             customFlashVars: false,
             creativeBGColor: '#fff',
             bgcolor: '[%BackgroundColor%]',
-            opacity: [%OpacityLevel%],
+            opacity: [%OpacityLevel%]/100,
             shadow: [%OpacityLevel%] < 1 ? true : false,
             blur: [%OpacityLevel%] < 1 ? true : false,
             siteOverride: false,
@@ -58,3 +60,4 @@
     }
   })(parent.window, parent.document, parent.window.jQuery);
 </script>
+[%RawHTML%]
