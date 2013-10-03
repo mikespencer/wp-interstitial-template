@@ -11,7 +11,7 @@ html.has-interstitial
     overflow: hidden
     margin: 0
     text-align: left !important
-  
+
   embed, object, select
     visibility: hidden
     display: none
@@ -27,16 +27,16 @@ html.has-interstitial
       .ad-logo
         background-image: url($imgbase + 'wp_int_header_left.gif')
 
-  .ad-interstitial.slate-int  
+  .ad-interstitial.slate-int
     .ad-interstitial-header
       background-color: #603
-      .ad-logo      
+      .ad-logo
         background-image: url($imgbase + 'slate_int_header_left.gif')
 
   .ad-interstitial.root-int
     .ad-interstitial-header
       background-color: #663
-      .ad-logo      
+      .ad-logo
         background-image: url($imgbase + 'root_int_header_left.gif')
 
 html.has-interstitial.interstitial-blur
@@ -64,7 +64,7 @@ html.has-interstitial.interstitial-blur
 
   .shadow-wide
     @include box-shadow(0, 0, 15px, 3px, #111)
-  
+
   .ad-interstitial-cover,
   .ad-interstitial-inner
     width: 100%
@@ -119,6 +119,9 @@ html.has-interstitial.interstitial-blur
     .ad-interstitial-creative-container
       position: relative
       margin: 0 auto
+      display: inline-block
+      a
+        display: inline-block
 
   .ad-col
     float: left
