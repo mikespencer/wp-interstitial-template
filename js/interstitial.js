@@ -35,7 +35,8 @@
       siteOverride: false,          //String: washingtonpost.com, slate.com, theroot.com. Override auto site detection
       quartileTracking: false,      //Array: For use with flash video player
       wrapperID: 'interstitial_ad', //String: ID of html wrapper
-      adid: null                    //String or Number. DFP ad id reference
+      adid: null,                   //String or Number. DFP ad id reference
+      useClickOverlay: false        //Boolean: Use a click overlay
     };
 
   //add bind method if browser does not natively support it:
@@ -47,6 +48,11 @@
     this.config = $.extend(true, default_config, config);
 
     this.creativeCode = this.buildCreative();
+
+    if(this.config.useClickOverlay){
+      this.creativeCode = this.addClickOverlay(this.creativeCode);
+    }
+
     this.$wrapper = this.buildWrapper();
     if(this.config.creativeType === 'image' && this.config.imgMap){
       this.map = this.buildImageMap();
@@ -95,6 +101,12 @@
     } else if(this.config.creativeType === 'custom'){
       return this.config.creative;
     }
+  };
+
+  // adds a click overlay to argument (HTML String)
+  Interstitial.prototype.addClickOverlay = function(code){
+    return '<a href="' + this.config.clickTrack + this.config.clickTag + '" class="ad-interstitial-click-overlay" target="_blank" ' +
+      'style="width:' + this.config.width + 'px;height: ' + this.config.height + 'px;"></a>' + code;
   };
 
   // wrapper code
