@@ -53,7 +53,9 @@
               '[%Track100Percent%]'
             ],
             wrapperID: 'interstitial_ad',
-            adid: '%eaid!'
+            adid: '%eaid!',
+            //have to make this a string and then compare so we don't break existing templates
+            useClickOverlay: '[%UseClickOverlay%]' === 'true' ? true : false
           });
         }
       });
