@@ -30,7 +30,8 @@ jQuery
       siteOverride: false,          //String: washingtonpost.com, slate.com, theroot.com. Override auto site detection
       quartileTracking: false,      //Array: For use with flash video player
       wrapperID: 'interstitial_ad', //String: ID of html wrapper
-      adid: null                    //String or Number. DFP ad id reference
+      adid: null,                   //String or Number. DFP ad id reference
+      useClickOverlay: false        //Boolean: Use a click overlay
     }
 
 #EXAMPLE USAGE:
